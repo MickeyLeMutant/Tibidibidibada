@@ -1,6 +1,6 @@
 {
   "name": "tibidibidibada",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Manage 3D files for 3D printers.",
   "main": "main.js",
   "scripts": {
@@ -8,8 +8,8 @@
     "start": "electron .",
     "package": "electron-forge package",
     "make": "electron-forge make",
-    "build": "electron-builder build --mac --win --publish never",
-    "deploy": "electron-builder build --mac --win --publish always"
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
   },
   "keywords": [
     "3D",
