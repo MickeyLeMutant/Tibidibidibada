@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 
 <head>
-    <title>Electron Auto Update Example</title>
     <style>
         body {
             box-sizing: border-box;
@@ -30,8 +29,12 @@
 </head>
 
 <body>
-    <h1>Electron Auto Update Example</h1>
-    <p id="version">V</p>
+    <h1>Tibidibidibada</h1>
+    <div id="search"></div>
+    <div id="filters">
+
+    </div>
+    <div id="results"></div>
     <div id="notification" class="hidden">
         <p id="message"></p>
         <button id="close-button" onClick="closeNotification()">
@@ -43,12 +46,12 @@
     </div>
     <script>
         const { ipcRenderer } = window.require('electron');
-        const version = document.getElementById('version');
+        const version = document.title;//document.getElementById('version');
 
         ipcRenderer.send('app_version');
         ipcRenderer.on('app_version', (event, arg) => {
             ipcRenderer.removeAllListeners('app_version');
-            version.innerText = 'Version ' + arg.version;
+            document.title.innerText = 'Version ' + arg.version;
         });
 
         const notification = document.getElementById('notification');
@@ -68,7 +71,9 @@
 
         function closeNotification() {
             notification.classList.add('hidden');
-        } function restartApp() {
+        }
+        
+        function restartApp() {
             ipcRenderer.send('restart_app');
         }
     </script>
