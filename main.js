@@ -15,7 +15,7 @@ const openLibrary = () => {
 
         // load config
         const fs = require('fs');
-        const cfgPath = directoryPath + `/tibi.cfg`
+        const cfgPath = directoryPath + `/tibi.json`
         if (fs.existsSync(cfgPath)) {
           fs.readFile(cfgPath, (err, data) => {
             if (err) throw err;
