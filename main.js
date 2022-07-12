@@ -40,9 +40,6 @@ const openLibrary = () => {
     }).catch(err => {
       console.log(err)
     })
-
-
-  console.log("test");
 }
 
 let mainWindow;
