@@ -1,6 +1,6 @@
 {
   "name": "tibidibidibada",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Manage 3D files for 3D printers.",
   "main": "main.js",
   "scripts": {

@@ -5,12 +5,13 @@
 </head>
 
 <body>
-    <h1>Tibidibidibada</h1>
+    <div id="filters" class="neodiv"></div>
     <div>
-        <input type="text" name="search" id="search" placeholder="Search">
+        <div id="searchPanel" class="neodiv">
+            <input type="text" name="search" id="search" placeholder="Search">
+        </div>
+        <div id="results" class="neodiv"></div>
     </div>
-    <div id="filters"></div>
-    <div id="results"></div>
     <div id="notification" class="hidden">
         <p id="message"></p>
         <button id="close-button" onClick="closeNotification()">
@@ -20,6 +21,19 @@
             Restart
         </button>
     </div>
+
+    <script src="JS/build/three.min.js"></script>
+    <script src="JS/examples/js/loaders/STLLoader.js"></script>
+    <script src="JS/examples/js/controls/OrbitControls.js"></script>
+    <script src="JS/Global.js"></script>
+    <script src="JS/STLViewer.js"></script>
     <script src="JS/AutoUpdate.js"></script>
     <script src="JS/Filters.js"></script>
+    <script src="JS/Search.js"></script>
+    <!--<script type="text/javascript">
+        window.onload = function () {
+            var elem = document.getElementById("model");
+            STLViewer("C:/Users/mehdi/Desktop/Projets/Tibidibidibada/dataDirect/Loisir/3DBenchy.stl", elem)
+        }
+    </script>-->
 </body>

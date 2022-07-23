@@ -10,9 +10,9 @@ const openLibrary = () => {
   dialog.showOpenDialog(mainWindow, { properties: ['openDirectory'] })
     .then(result => {
       if (!result.canceled) {
-        const directoryPath = result.filePaths;
-        console.log(directoryPath);
+       const directoryPath = result.filePaths;
 
+        //mainWindow.webContents.send('workspace',{path: directoryPath});
         // load config
         const fs = require('fs');
         const cfgPath = directoryPath + `/tibi.json`
@@ -24,6 +24,8 @@ const openLibrary = () => {
           });
         } else {
           console.log('does not')
+          // version directory direct
+            mainWindow.webContents.send('direct_directory',{directoryPath: directoryPath});
         }
 
         /*let student = { 
@@ -58,6 +60,7 @@ function createWindow() {
     },
     icon: image
   });
+  mainWindow.webContents.openDevTools({ mode: 'detach' })
   mainWindow.title = 'Tibidibidibada ' + app.getVersion();
   mainWindow.loadFile('index.html');
   mainWindow.on('closed', function () {

@@ -1,0 +1,84 @@
+
+const searchBar = document.querySelector('#search');
+searchBar.addEventListener('keyup', searchUser);
+
+function searchUser(e) {
+    const text = e.target.value.toLowerCase();
+    const kw = text.split(' ');
+    research(kw);
+    searchBar.text = text;
+}
+
+const researchFromPath = (path) => {
+    const directories = fs.readdirSync(directoryPath.toString() + path.toString(), { withFileTypes: true });
+    results.innerText = "";
+    let newUl = document.createElement('ul');
+
+    directories.filter(dirent => dirent.isFile())
+        .map(file => {
+            if (pathR.extname(path + "/" + file.name).toLowerCase() === ".stl") {
+                // display file
+                let newLi = document.createElement('li');
+                let newCard = document.createElement('div');
+                let newTitle = document.createElement('h1');
+                let newViewer = document.createElement('div');
+                newViewer.classList.add('viewer');
+
+                newTitle.innerText = file.name.replace(/\.[^/.]+$/, "");
+
+                newCard.appendChild(newTitle);
+                newCard.appendChild(newViewer);
+                newLi.appendChild(newCard);
+
+                newUl.appendChild(newLi);
+                STLViewer(directoryPath.toString() + path + "/" + file.name, newViewer)
+
+            }
+        });
+    results.appendChild(newUl);
+}
+
+const research = (kw) => {
+
+    results.innerText = "";
+
+    let newUl = document.createElement('ul');
+    results.appendChild(newUl);
+
+    files.map((f) => {
+        if (kw.every(term => f.tags.toLowerCase().includes(term.toLowerCase()))) {
+            let newLi = document.createElement('li');
+            let newH1 = document.createElement('h1');
+            newH1.innerText = f.name;
+            let filesUL = document.createElement('ul');
+            // liste des fichiers
+            f.files && f.files.map(file => {
+                let fileLi = document.createElement('li');
+                file.name && (fileLi.innerText = file.name);
+                file.path && (fileLi.innerText += " ( " + file.path + " )");
+                // liste des gcode par imprimante                
+                let gcodeUL = document.createElement('ul');
+                file.gcode && file.gcode.map(gcode => {
+                    let gcodeLi = document.createElement('li');
+                    // boutton
+                    let gcodeButton = document.createElement('button');
+                    gcodeButton.innerText = gcode.name;
+                    gcodeButton.onclick = function () {
+                        shell.showItemInFolder(directoryPath + gcode.path)
+                        alert(directoryPath + gcode.path);
+                    };
+                    gcodeLi.appendChild(gcodeButton);
+                    if (gcode.printer) {
+                        gcodeLi.innerText += " (" + gcode.printer + ")";
+                    }
+                    gcodeUL.appendChild(gcodeLi);
+                })
+                fileLi.appendChild(gcodeUL);
+                filesUL.appendChild(fileLi);
+            })
+            newLi.appendChild(newH1);
+            newLi.appendChild(filesUL);
+            newUl.appendChild(newLi);
+        }
+    })
+}

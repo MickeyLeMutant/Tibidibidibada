@@ -1,0 +1,2 @@
+let directoryPath;
+let files = [];
