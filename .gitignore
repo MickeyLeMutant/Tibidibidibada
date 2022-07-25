@@ -3,3 +3,5 @@ dist
 electron-builder.yml
 JS/build
 JS/examples
+data
+dataDirect

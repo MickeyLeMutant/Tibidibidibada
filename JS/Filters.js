@@ -79,7 +79,7 @@ const readLevelFromPath = (path, file, parent) => {
             readLevelFromPath(path + "/" + file.name, file, newUl,);
         });
     //displayCardD(path.toString(), newLi);
-    newBtn.innerHTML = file.name;
+    newBtn.innerHTML = file.name.slice(0,8);
     newBtn.onclick = function () {
         researchFromPath(path);
     };

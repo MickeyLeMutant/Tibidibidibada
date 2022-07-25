@@ -10,8 +10,20 @@ function searchUser(e) {
 }
 
 const researchFromPath = (path) => {
+    disposeAll();
     const directories = fs.readdirSync(directoryPath.toString() + path.toString(), { withFileTypes: true });
     results.innerText = "";
+    let newTitle = document.createElement('h1');
+
+    let newBtn = document.createElement("button");
+    newTitle.innerText = path.toString().slice(path.toString().lastIndexOf("/") + 1);
+    newBtn.innerHTML = "Open in explorer";
+    newBtn.onclick = function () {
+        let pathRes = directoryPath.toString() + path.toString();
+        pathRes = pathRes.replace(/\//g, '\\');
+        shell.beep();
+        shell.openPath(pathRes);
+    };
     let newUl = document.createElement('ul');
 
     directories.filter(dirent => dirent.isFile())
@@ -20,13 +32,13 @@ const researchFromPath = (path) => {
                 // display file
                 let newLi = document.createElement('li');
                 let newCard = document.createElement('div');
-                let newTitle = document.createElement('h1');
+                //let newTitle = document.createElement('h1');
                 let newViewer = document.createElement('div');
                 newViewer.classList.add('viewer');
 
-                newTitle.innerText = file.name.replace(/\.[^/.]+$/, "");
+                //newTitle.innerText = file.name.replace(/\.[^/.]+$/, "");
 
-                newCard.appendChild(newTitle);
+                //newCard.appendChild(newTitle);
                 newCard.appendChild(newViewer);
                 newLi.appendChild(newCard);
 
@@ -35,6 +47,8 @@ const researchFromPath = (path) => {
 
             }
         });
+    results.appendChild(newTitle);
+    results.appendChild(newBtn);
     results.appendChild(newUl);
 }
 
