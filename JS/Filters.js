@@ -1,3 +1,4 @@
+const { CONCURRENCY } = require('builder-util/out/fs');
 const { shell } = require('electron');
 const results = document.getElementById('results');
 const pathR = require('path');
@@ -58,6 +59,8 @@ ipcRenderer.on('direct_directory', (event, arg) => {
                 //readLevelFromPath(arg.directoryPath.toString() + "/" + file.name, file, newUl);
                 readLevelFromPath(file.name, file, newUl);
             });
+        parentUL = newUl;
+        refreshExplorer(actualPath, newUl);
     }
     catch (err) {
         alert(err);
@@ -69,24 +72,52 @@ ipcRenderer.on('direct_directory', (event, arg) => {
 //#region directories
 
 const readLevelFromPath = (path, file, parent) => {
-    let newLi = document.createElement('li');
-    let newUl = document.createElement('ul');
-    let newBtn = document.createElement("button");
 
     const directories = fs.readdirSync(directoryPath.toString() + path.toString(), { withFileTypes: true });
+
+    let newLi = document.createElement('li');
+    let newUl = document.createElement('ul');
+    if (directories.filter(dirent => dirent.isDirectory()).length > 0) {
+        let newBtnO = document.createElement("button");
+        newBtnO.innerHTML = "o";
+        newBtnO.onclick = function () {
+            actualPath = path;
+            refreshExplorer(actualPath, newUl);
+        }
+        newLi.appendChild(newBtnO);
+    }
+    let newBtn = document.createElement("button");
+
     directories.filter(dirent => dirent.isDirectory())
         .map(file => {
             readLevelFromPath(path + "/" + file.name, file, newUl,);
         });
     //displayCardD(path.toString(), newLi);
-    newBtn.innerHTML = file.name.slice(0,8);
+    //newBtn.innerHTML = file.name.slice(0, 8);
+    newBtn.innerHTML = file.name;
     newBtn.onclick = function () {
         researchFromPath(path);
     };
+    newBtn.title = file.name;
+    newLi.style.display = "none";
     newLi.appendChild(newBtn);
     newLi.appendChild(newUl);
     parent.appendChild(newLi);
 }
+
+const refreshExplorer = (pathDir, parent) => {
+    const directoryName = pathDir.slice(0, pathDir.indexOf('/'));
+    const lis = parent.children;
+    for (let li of lis) {
+        if (li.style.display === "none") {
+            li.style.display = "initial";
+        }
+        else {
+            li.style.display = "none";
+        }
+    }
+}
+
 
 //#endregion
 

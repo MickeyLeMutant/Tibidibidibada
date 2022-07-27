@@ -1,4 +1,3 @@
-
 const searchBar = document.querySelector('#search');
 searchBar.addEventListener('keyup', searchUser);
 
@@ -28,13 +27,15 @@ const researchFromPath = (path) => {
 
     directories.filter(dirent => dirent.isFile())
         .map(file => {
-            if (pathR.extname(path + "/" + file.name).toLowerCase() === ".stl") {
+            const ext = pathR.extname(path + "/" + file.name).toLowerCase();
+            if (ext === ".stl" || ext ===".gcode" || ext ===".3dm") {
                 // display file
                 let newLi = document.createElement('li');
                 let newCard = document.createElement('div');
                 //let newTitle = document.createElement('h1');
                 let newViewer = document.createElement('div');
                 newViewer.classList.add('viewer');
+                newViewer.onclick = click;
 
                 //newTitle.innerText = file.name.replace(/\.[^/.]+$/, "");
 
@@ -43,13 +44,17 @@ const researchFromPath = (path) => {
                 newLi.appendChild(newCard);
 
                 newUl.appendChild(newLi);
-                STLViewer(directoryPath.toString() + path + "/" + file.name, newViewer)
+                ThreeDViewer(directoryPath.toString() + path + "/" + file.name, newViewer)
 
             }
         });
     results.appendChild(newTitle);
     results.appendChild(newBtn);
     results.appendChild(newUl);
+}
+
+function click() {
+    alert('click');
 }
 
 const research = (kw) => {

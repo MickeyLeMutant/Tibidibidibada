@@ -13,7 +13,7 @@ function disposeAll() {
 }
 
 //function STLViewer(model, elementID) {}
-function STLViewer(model, elem) {
+function ThreeDViewer(model, elem) {
 
     const measure = () => {
         renderer.setSize(elem.clientWidth, elem.clientHeight);
@@ -83,4 +83,23 @@ function STLViewer(model, elem) {
 
         measure();
     });
+}
+
+function plusSize() {
+    if (sizeViewer < 1000) {
+        sizeViewer += 100;
+        changeSizeViewer();
+    }
+}
+
+function minusSize() {
+    if (sizeViewer > 200) {
+        sizeViewer -= 100;
+        changeSizeViewer();
+    }
+}
+
+function changeSizeViewer() {
+    css.cssRules[0].style.width = sizeViewer + "px";
+    css.cssRules[0].style.height = sizeViewer + "px";
 }

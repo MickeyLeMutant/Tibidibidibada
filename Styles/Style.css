@@ -1,3 +1,8 @@
+.viewer {
+    width: 300px;
+    height: 300px;
+}
+
 body {
     box-sizing: border-box;
     margin: 0;
@@ -23,6 +28,10 @@ li {
     width: auto;
 }
 
+.sizeBut {
+    width: 100px;
+}
+
 input {
     border: none;
     background-color: transparent;
@@ -31,12 +40,12 @@ input {
     width: 100%;
 }
 
-input:focus{
+input:focus {
     outline: none;
 }
 
-::placeholder { 
-    color:lightgray;
+::placeholder {
+    color: lightgray;
 }
 
 button {
@@ -46,15 +55,21 @@ button {
     font-weight: bolder;
 }
 
-button:focus{
+button:focus {
     outline: none;
 }
 
 #filters {
     font-size: larger;
     flex-direction: row;
-    width: 150px;
+    width: 200px;
 }
+
+#filters ul {
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 
 #searchPanel {
     flex-direction: row;
@@ -67,7 +82,7 @@ button:focus{
     flex-wrap: wrap;
 }
 
-#results h1{
+#results h1 {
     text-align: center;
     width: auto;
 }
@@ -82,11 +97,6 @@ button:focus{
     border-radius: 5px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-}
-
-.viewer {
-    width: 300px;
-    height: 300px;
 }
 
 .hidden {

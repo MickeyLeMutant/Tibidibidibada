@@ -19,17 +19,36 @@ Dewi est un producteur de fichier 3D. Il veut gérer sa collection de fichier so
 # Todo
 + largeur fixe de l'explorer
 + limiter le nombre de caractère de l'explorer
-- permettre de plier/déplier l'explorer
-- changer la taille des prévisu
-- pb du leak de mémoire
-- si img background.jpg/png alors a mettre en fond
 + bouton pour ouvrir le dossier
 + retour à la ligne si trop de prévisu
++ permettre de plier/déplier l'explorer
++ infobulle avec le nom complet du dossier
+    - mettre ... derrière les noms de dossier plus grand que 8 caractères
++ changer la taille des prévisu
+    - changer la taille par increment de 1 prévisu en + ou en - par ligne
++ nettoyer les repertoires three js pour réduire la taille de l'install
+- pb du leak de mémoire
+- ouverture des stls du repertoire racine
+- CRUD sur l'explorer pour les dossiers et les tags
+- CRUD des tags sur les fichiers et les dossiers
+- drag and drop de fichier de result vers explorer pour les déplacer
+- supprimer les fichiers
+- ouvrir les archives zip
+- faire une page d'accueil
+- associer des gcodes/lys à un stl
+- visualiser un gcode ?
+- visualiser un lys ?
+- visualiser un 3mf
+- prévisualiser les dossiers dans les parents
+- si img background.jpg/png alors a mettre en fond
 - si molette alors l'explorer et le résultat défile (pas le search)
 - min et max du zoom possible dans le prévisu
 - création de recherche automatiquement si plusieurs fois le meme mot clés détectés
-- ouverture des stls du repertoire racine
-- CRUD sur l'explorer
-- CRUD des tags
 - autocomplétion dans le search
-- propostion de tags sous la barre de search
+- proposition de tags sous la barre de search
+- trouver des fichiers en doublons
+- si on est en mode search alors l'explorer s'applatie (mais gonfle au survol de la souris)
+- si on est en mode explorer alors le search s'applatie (mais gonfle au survol de la souris)
+
+- abonnements à un producteur de contenue
+- nft
