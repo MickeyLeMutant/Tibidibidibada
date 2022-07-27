@@ -60,7 +60,7 @@ function createWindow() {
     },
     icon: image
   });
-  mainWindow.webContents.openDevTools({ mode: 'detach' })
+  //mainWindow.webContents.openDevTools({ mode: 'detach' })
   mainWindow.title = 'Tibidibidibada ' + app.getVersion();
   mainWindow.loadFile('index.html');
   mainWindow.on('closed', function () {

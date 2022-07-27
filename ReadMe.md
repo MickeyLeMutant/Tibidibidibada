@@ -28,17 +28,17 @@ Dewi est un producteur de fichier 3D. Il veut gérer sa collection de fichier so
     - changer la taille par increment de 1 prévisu en + ou en - par ligne
 + nettoyer les repertoires three js pour réduire la taille de l'install
 - pb du leak de mémoire
+- faire une page d'accueil
+- associer des gcodes/lys à un stl
+- visualiser un gcode ?
+- visualiser un 3mf
 - ouverture des stls du repertoire racine
 - CRUD sur l'explorer pour les dossiers et les tags
 - CRUD des tags sur les fichiers et les dossiers
 - drag and drop de fichier de result vers explorer pour les déplacer
 - supprimer les fichiers
 - ouvrir les archives zip
-- faire une page d'accueil
-- associer des gcodes/lys à un stl
-- visualiser un gcode ?
 - visualiser un lys ?
-- visualiser un 3mf
 - prévisualiser les dossiers dans les parents
 - si img background.jpg/png alors a mettre en fond
 - si molette alors l'explorer et le résultat défile (pas le search)

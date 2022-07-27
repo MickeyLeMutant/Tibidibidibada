@@ -1,4 +1,3 @@
-const { CONCURRENCY } = require('builder-util/out/fs');
 const { shell } = require('electron');
 const results = document.getElementById('results');
 const pathR = require('path');
@@ -61,6 +60,8 @@ ipcRenderer.on('direct_directory', (event, arg) => {
             });
         parentUL = newUl;
         refreshExplorer(actualPath, newUl);
+        document.getElementById("filters").style.display = "initial";
+        document.getElementById("main").style.display = "initial";
     }
     catch (err) {
         alert(err);
