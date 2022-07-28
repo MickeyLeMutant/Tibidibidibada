@@ -30,7 +30,7 @@ Dewi est un producteur de fichier 3D. Il veut gérer sa collection de fichier so
 - pb du leak de mémoire
 - faire une page d'accueil
 - associer des gcodes/lys à un stl
-- visualiser un gcode ?
+- visualiser un gcode ? avec découpe par couche ?
 - visualiser un 3mf
 - ouverture des stls du repertoire racine
 - CRUD sur l'explorer pour les dossiers et les tags
@@ -39,6 +39,8 @@ Dewi est un producteur de fichier 3D. Il veut gérer sa collection de fichier so
 - supprimer les fichiers
 - ouvrir les archives zip
 - visualiser un lys ?
+- bouton export vers usb/sd depuis un fichier gcode
+- bouton enregistrer la position de la caméra comme position par défault pour chaque fichier
 - prévisualiser les dossiers dans les parents
 - si img background.jpg/png alors a mettre en fond
 - si molette alors l'explorer et le résultat défile (pas le search)

@@ -1,3 +1,7 @@
+const fflate = require('fflate');
+//const { ThreeMFLoader } = require('JS/examples/jsm/loaders/3MFLoader.js');
+
+
 function disposeAll() {
     for (const model of models) {
         model.geometry && model.geometry.dispose();
@@ -12,8 +16,9 @@ function disposeAll() {
     renderers = [];
 }
 
-//function STLViewer(model, elementID) {}
 function ThreeDViewer(model, elem) {
+
+    const ext = model.slice(model.lastIndexOf(".") + 1);
 
     const measure = () => {
         renderer.setSize(elem.clientWidth, elem.clientHeight);
@@ -52,37 +57,69 @@ function ThreeDViewer(model, elem) {
     // Scene
     var scene = new THREE.Scene();
     scene.add(new THREE.HemisphereLight(0xffffff, 1.5));
-    (new THREE.STLLoader()).load(model, function (geometry) {
-        var material = new THREE.MeshPhongMaterial({
-            color: colorSTL,
-            specular: 100,
-            shininess: 100
-        });
-        var mesh = new THREE.Mesh(geometry, material);
-        scene.add(mesh);
+    switch (ext) {
+        case '3mf': // -------------------------------- 3MF
+            const loader = new THREE.ThreeMFLoader();
+            loader.load(model, function (object) {
+                object.quaternion.setFromEuler(new THREE.Euler(- Math.PI / 2, 0, 0)); 	// z-up conversion
+    
+                object.traverse(function (child) {
+                    child.castShadow = true;
+                });
 
-        // Object
-        mesh.rotation.x = -Math.PI / 2;
-        var middle = new THREE.Vector3();
-        geometry.computeBoundingBox();
-        geometry.boundingBox.getCenter(middle);
-        mesh.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(-middle.x, -middle.y, -middle.z));
+                //object.position.set(- 100, - 20, -100);
+                scene.add(object);
+                camera.position.z = 100;
+                animate();
+                measure();
+            });
+            break;
+        case 'gcode': // -------------------------------- GCODE
+            const loadergcode = new THREE.GCodeLoader();
+            loadergcode.load(model, function (object) {
+                scene.add(object);
+                camera.position.z = 100;
+                animate();
+                measure();
+            });
+            break;
+        case 'stl': // -------------------------------- STL
+            (new THREE.STLLoader()).load(model, function (geometry) {
+                var material = new THREE.MeshPhongMaterial({
+                    color: colorSTL,
+                    specular: 100,
+                    shininess: 100
+                });
+                var mesh = new THREE.Mesh(geometry, material);
+                scene.add(mesh);
 
-        var largestDimension = Math.max(geometry.boundingBox.max.x, geometry.boundingBox.max.y, geometry.boundingBox.max.z);
-        camera.position.z = largestDimension * 2.2;
+                // Object
+                mesh.rotation.x = -Math.PI / 2;
+                var middle = new THREE.Vector3();
+                geometry.computeBoundingBox();
+                geometry.boundingBox.getCenter(middle);
+                mesh.geometry.applyMatrix4(new THREE.Matrix4().makeTranslation(-middle.x, -middle.y, -middle.z));
 
-        models.push(mesh);
+                var largestDimension = Math.max(geometry.boundingBox.max.x, geometry.boundingBox.max.y, geometry.boundingBox.max.z);
+                camera.position.z = largestDimension * 2.2;
 
-        // Animation
-        var animate = function () {
-            requestAnimationFrame(animate);
-            controls.update();
-            renderer.render(scene, camera);
-        };
-        animate();
+                models.push(mesh);
 
-        measure();
-    });
+                animate();
+
+                measure();
+            });
+            break;
+        default:
+            console.log("pas pris en charge");
+    }
+
+    // Animation
+    var animate = function () {
+        requestAnimationFrame(animate);
+        controls.update();
+        renderer.render(scene, camera);
+    };
 }
 
 function plusSize() {

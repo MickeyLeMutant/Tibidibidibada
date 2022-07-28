@@ -1,6 +1,6 @@
 {
   "name": "tibidibidibada",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Manage 3D files for 3D printers.",
   "main": "main.js",
   "scripts": {
@@ -31,7 +31,8 @@
   "dependencies": {
     "about-window": "^1.15.2",
     "electron-squirrel-startup": "^1.0.0",
-    "electron-updater": "^5.0.5"
+    "electron-updater": "^5.0.5",
+    "fflate": "^0.7.3"
   },
   "config": {
     "forge": {

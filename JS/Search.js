@@ -28,7 +28,7 @@ const researchFromPath = (path) => {
     directories.filter(dirent => dirent.isFile())
         .map(file => {
             const ext = pathR.extname(path + "/" + file.name).toLowerCase();
-            if (ext === ".stl" || ext ===".gcode" || ext ===".3dm") {
+            if (ext === ".stl" || ext ===".gcode" || ext ===".3mf") {
                 // display file
                 let newLi = document.createElement('li');
                 let newCard = document.createElement('div');
